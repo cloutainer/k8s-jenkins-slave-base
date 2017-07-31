@@ -26,6 +26,7 @@ RUN apt-get -qqy update \
     git \
     jq \
     zip \
+    openjdk-8-jre && \
     build-essential && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
