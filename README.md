@@ -1,4 +1,4 @@
-[![](https://cloutainer.github.io/documentation/images/cloutainer.svg)](https://github.com/cloutainer/k8s-jenkins-slave-base)
+[![](https://cloutainer.github.io/documentation/images/cloutainer.svg?v2)](https://github.com/cloutainer/k8s-jenkins-slave-base)
 
 # k8s-jenkins-slave-base
 
