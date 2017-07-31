@@ -1,3 +1,5 @@
+[![](https://cloutainer.github.io/documentation/images/cloutainer.svg)](https://github.com/cloutainer/k8s-jenkins-slave-base)
+
 # k8s-jenkins-slave-base
 
 Base image for all k8s images.
