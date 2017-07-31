@@ -17,7 +17,7 @@ echo "DOCKER-ENTRYPOINT >> running as user: ${RUNAS}"
 # ENTRYPOINT-HOOK (CHILD IMAGE)
 #
 echo "DOCKER-ENTRYPOINT >> starting entrypoint hook"
-/opt/docker-entrypoint-hook.sh &
+source /opt/docker-entrypoint-hook.sh
 
 #
 # JENKINS SLAVE JNLP
