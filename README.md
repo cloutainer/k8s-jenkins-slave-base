@@ -13,7 +13,7 @@ Base image for all k8s images.
 Use in Dockerfile:
 
 ```
-FROM cloutainer/k8s-jenkins-slave-base:v5
+FROM cloutainer/k8s-jenkins-slave-base:v6
 
 COPY docker-entrypoint-hook.sh /opt/docker-entrypoint-hook.sh
 RUN chmod u+rx,g+rx,o+rx,a-w /opt/docker-entrypoint-hook.sh
