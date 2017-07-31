@@ -31,4 +31,4 @@ It will be executed by the entrypoint before the JNLP remoting jar extablishes t
 
 ### License
 
-[MIT](https://github.com/cloutainer/k8s-jenkins-slave-nodejs-xvfb-chrome/blob/master/LICENSE) © [Bernhard Grünewaldt](https://github.com/clouless)
+[MIT](https://github.com/cloutainer/k8s-jenkins-slave-base/blob/master/LICENSE) © [Bernhard Grünewaldt](https://github.com/clouless)
