@@ -20,6 +20,7 @@ RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
     bzip2 \
     ca-certificates \
+    apt-transport-https \
     unzip \
     wget \
     curl \
