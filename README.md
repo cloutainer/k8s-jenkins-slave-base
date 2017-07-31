@@ -1,4 +1,4 @@
-<p align="right"><img src="https://cloutainer.github.io/documentation/images/cloutainer.svg?v3"></p>
+<img src="https://cloutainer.github.io/documentation/images/cloutainer.svg?v3" align="right">
 
 # k8s-jenkins-slave-base
 
