@@ -30,6 +30,16 @@ RUN apt-get -qqy update \
     build-essential && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
+
+#
+# CLOUDFOUNDRY CLI
+#
+RUN wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add - && \
+    echo "deb http://packages.cloudfoundry.org/debian stable main" >> /etc/apt/sources.list.d/cloudfoundry-cli.list && \
+    apt-get update -qqy && apt-get -qqy install cf-cli && \
+    rm /etc/apt/sources.list.d/cloudfoundry-cli.list && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+
 #
 # INSTALL AND CONFIGURE
 #
