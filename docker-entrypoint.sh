@@ -30,7 +30,7 @@ echo "DOCKER-ENTRYPOINT >> config: JENKINS_JNLP_URL: $JENKINS_JNLP_URL"
 echo "DOCKER-ENTRYPOINT >> downloading jenkins-slave.jar from Jenkins"
 echo "DOCKER-ENTRYPOINT >> ${JENKINS_URL}/jnlpJars/slave.jar"
 
-curl -sSLo /tmp/jenkins-slave.jar ${JENKINS_URL}/jnlpJars/slave.jar
+curl -sSLo --insecure /tmp/jenkins-slave.jar ${JENKINS_URL}/jnlpJars/slave.jar
 
 echo "DOCKER-ENTRYPOINT >> establishing JNLP connection with Jenkins via JNLP URL"
 
