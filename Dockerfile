@@ -11,7 +11,7 @@ RUN groupadd -g 10000 jenkins && \
     chown jenkins:jenkins /home/jenkins/.jenkins && \
     chown jenkins:jenkins /home/jenkins/.jenkins && \
     chmod 750 /home/jenkins/ && \
-    chmod 750 /home/jenkins/.jenkins \
+    chmod 750 /home/jenkins/.jenkins && \
     chown jenkins /etc/ssl/certs/java/cacerts
 
 #
