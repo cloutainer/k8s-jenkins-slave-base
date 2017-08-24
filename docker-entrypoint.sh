@@ -14,6 +14,19 @@ RUNAS=$(whoami)
 echo "DOCKER-ENTRYPOINT >> running as user: ${RUNAS}"
 
 #
+# IMPORT KUBERNETES ca.crt (OPTIONAL)
+#
+if [ -n "$KUBERNETES_CA" ]
+then
+  echo $KUBERNETES_CA > /tmp/kube-ca.crt
+  echo "DOCKER-ENTRYPOINT >> KUBERNETES_CA ENV VAR > importing kubernetes ca certificate to java keystore."
+  keytool -importcert -keystore /etc/ssl/certs/java/cacerts -alias kubernetes -file /tmp/kube-ca.crt -storepass changeit -noprompt
+else
+  echo "DOCKER-ENTRYPOINT >> KUBERNETES_CA ENV VAR > not set. SKIPPING importing of kubernetes ca certificate."
+fi
+
+
+#
 # ENTRYPOINT-HOOK (CHILD IMAGE)
 #
 echo "DOCKER-ENTRYPOINT >> starting entrypoint hook"
