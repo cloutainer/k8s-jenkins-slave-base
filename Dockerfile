@@ -11,8 +11,7 @@ RUN groupadd -g 10000 jenkins && \
     chown jenkins:jenkins /home/jenkins/.jenkins && \
     chown jenkins:jenkins /home/jenkins/.jenkins && \
     chmod 750 /home/jenkins/ && \
-    chmod 750 /home/jenkins/.jenkins && \
-    chown jenkins /etc/ssl/certs/java/cacerts
+    chmod 750 /home/jenkins/.jenkins
 
 #
 # BASE PACKAGES
@@ -32,6 +31,10 @@ RUN apt-get -qqy update \
     build-essential && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
+#
+# LET JENKINS ALTER CACERTS
+#
+RUN chown jenkins /etc/ssl/certs/java/cacerts
 
 #
 # CLOUDFOUNDRY CLI
