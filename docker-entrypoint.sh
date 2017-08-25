@@ -27,22 +27,6 @@ else
 fi
 
 #
-# CHECK IF JNLP JAR CACHE DIR IS WRITEABLE
-# See: https://github.com/jenkinsci/remoting/blob/1dd4de329c04a79a2ef88358e452a8749dc9a943/docs/workDir.md
-#
-if [ ! -d ~/.jenkins/cache/jars ]
-then
-  mkdir -p ~/.jenkins/cache/jars
-fi  
-if [ ! -w ~/.jenkins/cache/jars ]
-then
-  echo "DOCKER-ENTRYPOINT >> JAR CACHE DIR NOT WRITEABLE! EXIT!"
-  exit 1
-else
-  echo "DOCKER-ENTRYPOINT >> JAR CACHE DIR WRITEABLE."
-fi
-
-#
 # ENTRYPOINT-HOOK (CHILD IMAGE)
 #
 echo "DOCKER-ENTRYPOINT >> starting entrypoint hook"
@@ -71,5 +55,5 @@ echo "DOCKER-ENTRYPOINT >> establishing JNLP connection with Jenkins via JNLP UR
 
 exec java $JAVA_OPTS -cp /tmp/jenkins-slave.jar \
             hudson.remoting.jnlp.Main -headless \
-            -workDir /home/jenkins/work/ \
+            -workDir /home/jenkins/agent/ \
             -url $JENKINS_URL $JENKINS_SECRET $JENKINS_NAME
