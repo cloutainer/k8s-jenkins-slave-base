@@ -26,6 +26,28 @@ else
   echo "DOCKER-ENTRYPOINT >> KUBERNETES_CA_BASE64 ENV VAR > not set. SKIPPING importing of kubernetes ca certificate."
 fi
 
+#
+# FORCE HOME DIR
+#
+export HOME=/home/jenkins
+
+#
+# CHECK IF JNLP JAR CACHE DIR IS WRITEABLE
+# See: https://github.com/jenkinsci/remoting/blob/1dd4de329c04a79a2ef88358e452a8749dc9a943/docs/workDir.md
+#
+if [ ! -d ~/.jenkins/cache/jars ]
+then
+  mkdir -p ~/.jenkins/cache/jars
+fi  
+if [ ! -w ~/.jenkins/cache/jars ]
+then
+  echo "DOCKER-ENTRYPOINT >> JAR CACHE DIR NOT WRITEABLE! EXIT!"
+  exit 1
+else
+  echo "DOCKER-ENTRYPOINT >> JAR CACHE DIR WRITEABLE."
+fi
+
+
 
 #
 # ENTRYPOINT-HOOK (CHILD IMAGE)
