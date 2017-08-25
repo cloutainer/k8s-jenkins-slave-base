@@ -29,7 +29,7 @@ fi
 #
 # FORCE HOME DIR
 #
-export HOME=/home/jenkins
+export HOME=/home/jenkins/
 
 #
 # CHECK IF JNLP JAR CACHE DIR IS WRITEABLE
