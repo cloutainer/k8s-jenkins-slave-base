@@ -27,11 +27,6 @@ else
 fi
 
 #
-# FORCE HOME DIR
-#
-export HOME=/home/jenkins/
-
-#
 # CHECK IF JNLP JAR CACHE DIR IS WRITEABLE
 # See: https://github.com/jenkinsci/remoting/blob/1dd4de329c04a79a2ef88358e452a8749dc9a943/docs/workDir.md
 #
@@ -47,8 +42,6 @@ else
   echo "DOCKER-ENTRYPOINT >> JAR CACHE DIR WRITEABLE."
 fi
 
-
-
 #
 # ENTRYPOINT-HOOK (CHILD IMAGE)
 #
@@ -63,17 +56,19 @@ echo "DOCKER-ENTRYPOINT >> config: JENKINS_SECRET:   $JENKINS_SECRET"
 echo "DOCKER-ENTRYPOINT >> config: JENKINS_URL:      $JENKINS_URL"
 echo "DOCKER-ENTRYPOINT >> config: JENKINS_JNLP_URL: $JENKINS_JNLP_URL"
 
-echo "DOCKER-ENTRYPOINT >> downloading jenkins-slave.jar from Jenkins"
-echo "DOCKER-ENTRYPOINT >> ${JENKINS_URL}/jnlpJars/slave.jar"
-
-curl -sSLko /tmp/jenkins-slave.jar ${JENKINS_URL}/jnlpJars/slave.jar
+if [ -n "$REMOTING_JAR_URL" ]
+then
+  echo "DOCKER-ENTRYPOINT >> downloading jenkins-slave.jar from USER SPECIFIED URL"
+  echo "DOCKER-ENTRYPOINT >> ${REMOTING_JAR_URL}"
+  curl -sSLko /tmp/jenkins-slave.jar $REMOTING_JAR_URL
+else  
+  echo "DOCKER-ENTRYPOINT >> downloading jenkins-slave.jar from Jenkins"
+  echo "DOCKER-ENTRYPOINT >> ${JENKINS_URL}/jnlpJars/slave.jar"
+  curl -sSLko /tmp/jenkins-slave.jar ${JENKINS_URL}/jnlpJars/slave.jar
+fi  
 
 echo "DOCKER-ENTRYPOINT >> establishing JNLP connection with Jenkins via JNLP URL"
 
 exec java $JAVA_OPTS -cp /tmp/jenkins-slave.jar \
             hudson.remoting.jnlp.Main -headless \
             -url $JENKINS_URL $JENKINS_SECRET $JENKINS_NAME
-
-
-### remoting-3.10 is bundled with jenkins 2.71
-### curl -sSLo /tmp/jenkins-slave.jar  https://repo.jenkins-ci.org/releases/org/jenkins-ci/main/remoting/3.10/remoting-3.10.jar
