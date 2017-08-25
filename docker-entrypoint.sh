@@ -71,4 +71,5 @@ echo "DOCKER-ENTRYPOINT >> establishing JNLP connection with Jenkins via JNLP UR
 
 exec java $JAVA_OPTS -cp /tmp/jenkins-slave.jar \
             hudson.remoting.jnlp.Main -headless \
+            -workDir /home/jenkins/work/ \
             -url $JENKINS_URL $JENKINS_SECRET $JENKINS_NAME
