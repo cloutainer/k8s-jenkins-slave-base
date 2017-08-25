@@ -6,12 +6,13 @@ FROM ubuntu:16.04
 ENV HOME /home/jenkins
 RUN groupadd -g 10000 jenkins && \
     useradd -c "Jenkins user" -d $HOME -u 10000 -g 10000 -m jenkins && \
+    mkdir -p /home/jenkins/.jenkins/cache/jars && \
     mkdir /home/jenkins/.jenkins/ && \
     chown -R jenkins:jenkins /home/jenkins/ && \
     chown jenkins:jenkins /home/jenkins/.jenkins && \
     chown jenkins:jenkins /home/jenkins/.jenkins && \
     chmod 750 /home/jenkins/ && \
-    chmod 750 /home/jenkins/.jenkins
+    chmod -R 750 /home/jenkins/.jenkins
 
 #
 # BASE PACKAGES
