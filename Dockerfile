@@ -6,9 +6,9 @@ FROM ubuntu:16.04
 ENV HOME /home/jenkins
 RUN groupadd -g 10000 jenkins && \
     useradd -c "Jenkins user" -d $HOME -u 10000 -g 10000 -m jenkins && \
-    mkdir -p /home/jenkins/.jenkins/cache/jars && \
+    mkdir -p /home/jenkins/.jenkins && \
+    mkdir -p /home/jenkins/agent && \
     chown -R jenkins:jenkins /home/jenkins/ && \
-    chown jenkins:jenkins /home/jenkins/.jenkins && \
     chown jenkins:jenkins /home/jenkins/.jenkins && \
     chmod 750 /home/jenkins/ && \
     chmod -R 750 /home/jenkins/.jenkins
@@ -55,6 +55,7 @@ RUN chmod u+rx,g+rx,o+rx,a-w /opt/docker-entrypoint.sh
 # VOLUMES AND ENTRYPOINT
 #
 VOLUME /home/jenkins/.jenkins
+VOLUME /home/jenkins/agent
 WORKDIR /home/jenkins
 ENTRYPOINT ["/opt/docker-entrypoint.sh"]
 
