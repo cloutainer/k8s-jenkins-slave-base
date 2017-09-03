@@ -70,7 +70,7 @@ RUN chmod u+rx,g+rx,o+rx,a-w /opt/docker-entrypoint.sh
 # FIX GID ACCESS TO docker.sock
 #
 # (Why? Since docker.sock can have variable GID on HOST, and we need our Docker-in-Docker User to be part of that Group)
-COPY docker-entrypoint.sh /opt/docker-fix-socket-permissions.sh
+COPY docker-fix-socket-permissions.sh /opt/docker-fix-socket-permissions.sh
 RUN chmod u+rx,g-rwx,o-rwx,a-w /opt/docker-fix-socket-permissions.sh && \
     echo "jenkins ALL=(root) NOPASSWD: /opt/docker-fix-socket-permissions.sh" >> /etc/sudoers
 
