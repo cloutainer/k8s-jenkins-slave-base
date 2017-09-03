@@ -36,6 +36,8 @@ fi
 #
 echo "DOCKER-ENTRYPOINT >> starting entrypoint hook"
 source /opt/docker-entrypoint-hook.sh
+# reload session and make docker main group! now "docker ps" works!!!
+newgrp - docker
 
 #
 # JENKINS SLAVE JNLP
