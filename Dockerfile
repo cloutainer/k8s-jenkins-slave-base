@@ -19,6 +19,7 @@ RUN groupadd -g 10000 jenkins && \
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
     bzip2 \
+    sudo \
     ca-certificates \
     apt-transport-https \
     unzip \
