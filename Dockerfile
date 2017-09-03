@@ -37,6 +37,20 @@ RUN apt-get -qqy update \
 RUN chown jenkins /etc/ssl/certs/java/cacerts
 
 #
+# KUBERNETES CLI (kubectl)
+#
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
+    chmod +x ./kubectl && \
+    mv ./kubectl /usr/local/bin/kubectl
+
+#
+# DOCKER CLI
+#
+RUN curl -fsSL get.docker.com -o get-docker.sh && \
+    sh get-docker.sh && \
+    usermod -aG docker jenkins
+
+#
 # CLOUDFOUNDRY CLI
 #
 RUN wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add - && \
