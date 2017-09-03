@@ -14,6 +14,11 @@ RUNAS=$(whoami)
 echo "DOCKER-ENTRYPOINT >> running as user: ${RUNAS}"
 
 #
+# FIX DOCKER SOCKET
+#
+sudo /opt/docker-fix-socket-permissions.sh
+
+#
 # IMPORT KUBERNETES ca.crt (OPTIONAL)
 #
 if [ -n "$KUBERNETES_CA_BASE64" ]
