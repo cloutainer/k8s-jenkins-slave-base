@@ -17,6 +17,8 @@ echo "DOCKER-ENTRYPOINT >> running as user: ${RUNAS}"
 # FIX DOCKER SOCKET
 #
 sudo /opt/docker-fix-socket-permissions.sh
+# reload session and make docker main group! now "docker ps" works!!!
+newgrp - docker
 
 #
 # IMPORT KUBERNETES ca.crt (OPTIONAL)
@@ -36,8 +38,6 @@ fi
 #
 echo "DOCKER-ENTRYPOINT >> starting entrypoint hook"
 source /opt/docker-entrypoint-hook.sh
-# reload session and make docker main group! now "docker ps" works!!!
-newgrp - docker
 
 #
 # JENKINS SLAVE JNLP
