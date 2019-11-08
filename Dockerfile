@@ -25,6 +25,7 @@ RUN apt-get -qqy update \
     wget \
     curl \
     git \
+    ssh \
     jq \
     zip \
     openjdk-8-jre \
