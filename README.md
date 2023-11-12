@@ -1,5 +1,7 @@
 <img src="https://cloutainer.github.io/documentation/images/cloutainer.svg?v5" align="right">
 
+### :bangbang: DEPRECATED AND ARCHIVED
+
 # k8s-jenkins-slave-base
 
 Base image for all k8s images.
